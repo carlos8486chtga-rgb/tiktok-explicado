@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050308">
+<title>TikTok Explicado — História, Funcionamento, Renda, Shop e Curiosidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#fff;--mute:rgba(255,255,255,.72);--line:rgba(255,255,255,.2);--cy:#22e5ee;--pk:#ff3d7f;
+ --display:"Unbounded","Arial Black",system-ui,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{height:100%;background:#050308;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{height:100%;margin:0;display:grid;place-items:center;background:#050308;color:var(--ink);font-family:var(--body);overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--cy);outline-offset:2px;border-radius:8px}
+
+.stage{position:relative;width:100%;height:100%;overflow:hidden;background:var(--bg);container-type:inline-size}
+@media(min-width:820px){.stage{width:auto;aspect-ratio:9/16;max-width:100%;border-radius:22px;border:1px solid var(--line)}}
+.feed{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;overscroll-behavior:contain;scrollbar-width:none;position:relative}
+.feed::-webkit-scrollbar{display:none}
+.slide{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;touch-action:pan-y;user-select:none;
+ display:flex;flex-direction:column;justify-content:center;gap:16px;padding:84px 78px 120px 18px}
+.slide::before{content:"";position:absolute;inset:0;z-index:0;background:
+ radial-gradient(70% 45% at var(--ax,80%) 18%,var(--c1,rgba(34,229,238,.34)),transparent 70%),
+ radial-gradient(70% 45% at var(--bx,10%) 88%,var(--c2,rgba(255,61,127,.36)),transparent 70%),linear-gradient(#0c0816,#050308)}
+.s2{--ax:10%;--bx:90%}.s3{--ax:90%;--bx:20%;--c1:rgba(255,61,127,.32);--c2:rgba(34,229,238,.3)}.s4{--ax:20%;--bx:80%}.s5{--ax:80%;--bx:15%}.s6{--ax:15%;--bx:85%;--c1:rgba(255,61,127,.3);--c2:rgba(34,229,238,.3)}.s7{--ax:85%;--bx:10%}.s8{--ax:80%;--bx:15%;--c1:rgba(255,61,127,.32);--c2:rgba(34,229,238,.3)}
+.slide>*{position:relative;z-index:1}
+
+/* topo */
+.top{position:absolute;z-index:6;top:8px;left:12px;right:12px;display:flex;gap:4px}
+.seg{flex:1;min-width:0;height:18px;border:0;background:none;padding:7px 0}
+.seg span{display:block;height:3px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden}
+.seg span::after{content:"";display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.seg.done span::after{transform:scaleX(1)}
+.tabs{position:absolute;z-index:6;top:32px;left:0;right:0;display:flex;justify-content:center;gap:22px;font-weight:700;font-size:.98rem;color:rgba(255,255,255,.62);text-shadow:0 1px 4px rgba(0,0,0,.6);pointer-events:none}
+.tabs b{color:#fff;position:relative}.tabs b::after{content:"";position:absolute;left:25%;right:25%;bottom:-6px;height:3px;border-radius:2px;background:#fff}
+
+/* conteúdo estilo legenda de vídeo */
+.art{min-height:0;height:clamp(84px,20vh,170px);display:flex;align-items:center}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,9.5cqw,2.7rem);line-height:1.06;margin:0;text-shadow:.03em 0 var(--cy),-.03em 0 var(--pk);overflow-wrap:break-word;hyphens:auto}
+.lines{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.cp{width:fit-content;max-width:100%;background:rgba(0,0,0,.6);border-radius:10px;padding:6px 12px;font-weight:600;font-size:clamp(.95rem,4.7cqw,1.2rem);line-height:1.3}
+.cp.k{background:#fff;color:#16101f}
+h2,.cp,.art{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+.on h2,.on .art{opacity:1;transform:none;transition-delay:.1s}
+.on .cp{opacity:1;transform:none;transition-delay:calc(.7s + var(--i)*.75s)}
+.btn{width:fit-content;border:0;border-radius:999px;padding:.7rem 1.3rem;background:#fff;color:#16101f;font-weight:700;box-shadow:3px 3px 0 var(--cy),-3px -3px 0 var(--pk)}
+.nudge{display:inline-block;animation:nudge 1.3s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(-5px)}}
+
+/* ilustrações */
+.play svg{width:92px;overflow:visible;display:block}.play .c{fill:var(--cy);transform:translate(-3px,0)}.play .p{fill:var(--pk);transform:translate(3px,0)}.play .w{fill:#fff}
+.on .play svg{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.1)}}
+.deck{position:relative;width:70px;height:120px}
+.deck i{position:absolute;inset:0;border-radius:14px;border:2px solid #fff;background:linear-gradient(160deg,var(--cy),#6b2cf5)}
+.deck i+i{background:linear-gradient(160deg,var(--pk),#ffb347);transform:translateY(10px) scale(.93);z-index:-1}
+.on .deck i:first-child{animation:swipe 3.2s ease-in-out infinite}
+@keyframes swipe{0%,50%{transform:none;opacity:1}72%{transform:translateY(-130%);opacity:0}73%{transform:translateY(50%);opacity:0}100%{transform:none;opacity:1}}
+.trk{width:min(100%,250px)}.trk i{display:block;height:15px;border-radius:8px;margin:7px 0;width:var(--w);background:var(--cy);transform:scaleX(0);transform-origin:left}
+.trk i:nth-child(2){background:var(--pk)}.trk i:nth-child(3){background:#fff}
+.on .trk i{transform:none;transition:transform .8s cubic-bezier(.2,.8,.2,1) var(--d)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1.5px solid var(--cy);border-radius:999px;padding:5px 12px;font-weight:700;font-size:.92rem;background:rgba(34,229,238,.12)}
+.chip:nth-child(even){border-color:var(--pk);background:rgba(255,61,127,.14)}.chip:nth-child(3n){background:#fff;color:#16101f;border-color:#fff}
+.on .chip{animation:bob 3.2s ease-in-out infinite}.on .chip:nth-child(2n){animation-delay:-1s}.on .chip:nth-child(3n){animation-delay:-2s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.ticks{display:flex;gap:10px}.ticks b{width:38px;height:38px;border-radius:50%;background:var(--cy);color:#04151a;display:grid;place-items:center;font-size:1.1rem}.ticks b:nth-child(even){background:var(--pk);color:#fff}
+.on .ticks b{animation:pop .5s both}.on .ticks b:nth-child(2){animation-delay:.15s}.on .ticks b:nth-child(3){animation-delay:.3s}.on .ticks b:nth-child(4){animation-delay:.45s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+/* números, linha do tempo e faixa de valores */
+.art.tall{height:auto}
+.stats{display:flex;flex-direction:column;gap:10px;width:100%}
+.stat{border:1px solid var(--line);border-radius:18px;padding:11px 15px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+.stat b{display:block;font:800 clamp(1.4rem,7.2cqw,2.1rem)/1.05 var(--display);text-shadow:.03em 0 var(--cy),-.03em 0 var(--pk);white-space:nowrap}
+.stat span{font-size:.8rem;color:var(--mute)}
+.tl{position:relative;display:flex;width:100%}
+.tl::before{content:"";position:absolute;left:16%;right:16%;top:21px;height:3px;background:linear-gradient(90deg,var(--cy),var(--pk));transform:scaleX(0);transform-origin:left;transition:transform 1.2s ease .3s}
+.on .tl::before{transform:none}
+.tl div{flex:1;text-align:center;position:relative;font-size:.8rem;color:var(--mute)}
+.tl div::before{content:"";display:block;width:16px;height:16px;border-radius:50%;background:#fff;margin:14px auto 8px;box-shadow:0 0 0 4px rgba(255,255,255,.22)}
+.tl b{display:block;font:800 1.15rem var(--display);color:#fff}
+.range{width:100%}
+.range .nums{display:flex;justify-content:space-between;gap:8px;margin-bottom:9px}
+.range .nums div{font-size:.78rem;color:var(--mute)}.range .nums div:last-child{text-align:right}
+.range .nums b{display:block;font:800 clamp(1.05rem,5.6cqw,1.6rem) var(--display);color:#fff;text-shadow:.03em 0 var(--cy),-.03em 0 var(--pk);white-space:nowrap}
+.range .bar{height:14px;border-radius:7px;background:rgba(255,255,255,.14);overflow:hidden}
+.range .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--pk));transform:scaleX(0);transform-origin:left}
+.on .range .bar i{transform:none;transition:transform 1.3s cubic-bezier(.2,.8,.2,1) .3s}
+.cp.src{background:none;padding:2px 0;font-size:.74rem;font-weight:400;color:var(--mute)}
+
+/* barra lateral de ações */
+.rail{position:absolute;z-index:4;right:8px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:15px}
+.ava{position:relative;width:46px;height:46px;border-radius:50%;border:2px solid #fff;background:linear-gradient(135deg,var(--cy),var(--pk));display:grid;place-items:center;font:800 1.05rem var(--display);color:#16101f;margin-bottom:8px}
+.fol{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;border:0;padding:0;background:var(--pk);color:#fff;font-size:.95rem;line-height:1;font-weight:700}
+.fol.is{background:#fff;color:var(--pk)}
+.act{background:none;border:0;padding:0;display:grid;justify-items:center;gap:2px;font-size:.76rem;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.act svg{width:34px;height:34px;fill:#fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+.act.is svg{fill:var(--pk)}.act.is.sv svg{fill:#ffc940}.act.pop svg{animation:pop .4s}
+.disc{width:42px;height:42px;border-radius:50%;border:9px solid #1d1628;background:conic-gradient(var(--cy),var(--pk),#fff,var(--cy));animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.info{position:absolute;z-index:4;left:16px;right:80px;bottom:20px;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.user{font-weight:700}.desc{font-size:.92rem;margin:3px 0 7px;line-height:1.35}.desc b{font-weight:700}
+.snd{display:flex;gap:6px;font-size:.85rem;overflow:hidden;white-space:nowrap}.snd span:last-child{display:inline-block;animation:mq 9s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.scrub{position:absolute;z-index:5;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.22)}
+.scrub i{display:block;height:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+.on .scrub i{animation:run 9s linear infinite}@keyframes run{to{transform:scaleX(1)}}
+.burst{position:absolute;z-index:7;width:96px;height:96px;margin:-48px 0 0 -48px;fill:var(--pk);pointer-events:none;animation:burst .8s ease-out forwards}
+@keyframes burst{0%{transform:scale(.3) rotate(-14deg);opacity:1}40%{transform:scale(1.15) rotate(8deg)}100%{transform:scale(1.5) translateY(-40px);opacity:0}}
+.toast{position:absolute;z-index:8;top:70px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;transition:opacity .3s;opacity:0;pointer-events:none}
+.toast.show{opacity:1}
+
+.side{position:fixed;right:max(16px,calc(50% - 36vh*9/16*1.6 - 70px));top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:12px;z-index:9}
+@media(min-width:820px){.side{display:flex;right:calc(50% - (100dvh*9/16)/2 - 76px)}}
+@media(min-width:820px) and (max-aspect-ratio:9/16){.side{right:12px}}
+.side button{width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.14);display:grid;place-items:center}
+.side button:hover:not(:disabled){background:rgba(255,255,255,.26)}.side button:disabled{opacity:.35;cursor:default}
+.side svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@media(max-height:560px){.slide{padding-top:64px;padding-bottom:84px}.art{display:none}}
+@media(prefers-reduced-motion:reduce){
+ .feed{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}
+ h2,.cp,.art{opacity:1;transform:none}.trk i,.range .bar i{transform:none}.tl::before{transform:none}.scrub i{transform:scaleX(.5)}}
+
+/* melhorias da versão expandida */
+.source-note{font-size:.72rem;color:var(--mute)}
+@media(min-width:820px){
+  .slide{padding-left:28px;padding-right:88px}
+  .cp{max-width:96%}
+}
+@media(max-width:430px){
+  .slide{padding-left:16px;padding-right:72px}
+  h2{font-size:clamp(1.45rem,9vw,2.25rem)}
+}
+
+
+/* ===== V3: animações, avatares e TikTok Shop ===== */
+*{text-rendering:optimizeLegibility}
+.slide{isolation:isolate}
+.slide::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;opacity:.34;background:
+ radial-gradient(circle at 20% 30%,rgba(255,255,255,.12),transparent 20%),
+ radial-gradient(circle at 80% 70%,rgba(255,255,255,.08),transparent 22%);
+ animation:ambient 12s ease-in-out infinite alternate}
+@keyframes ambient{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(2%,-2%,0) scale(1.05)}}
+.on .art{animation:enterArt .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes enterArt{from{opacity:0;transform:translateY(25px) scale(.94)}to{opacity:1;transform:none}}
+.slide h2{max-width:100%;letter-spacing:-.025em;word-break:normal;overflow-wrap:anywhere}
+.cp{word-break:normal;overflow-wrap:anywhere;white-space:normal}
+.avatar-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.ava{overflow:visible;background:#111}
+.ava .avatar-photo{border:2px solid #fff;box-shadow:0 5px 20px rgba(0,0,0,.35)}
+.ava .fol{z-index:2}
+.profile-pulse{animation:profilePulse 2.8s ease-in-out infinite}
+@keyframes profilePulse{50%{box-shadow:0 0 0 7px rgba(255,255,255,.08),0 0 24px rgba(34,229,238,.35)}}
+
+/* cards do Shop */
+.shop-wrap{width:100%;display:flex;flex-direction:column;gap:10px}
+.shop-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.shop-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#fff;color:#111;font-size:.76rem;font-weight:800}
+.shop-cart-btn{border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);border-radius:999px;padding:7px 11px;font-weight:800}
+.shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.product-card{border:1px solid rgba(255,255,255,.17);background:rgba(15,10,24,.78);border-radius:16px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.22);transform:translateY(12px);opacity:0}
+.on .product-card{animation:cardIn .55s cubic-bezier(.2,.8,.2,1) forwards}
+.on .product-card:nth-child(2){animation-delay:.1s}.on .product-card:nth-child(3){animation-delay:.2s}.on .product-card:nth-child(4){animation-delay:.3s}
+@keyframes cardIn{to{opacity:1;transform:none}}
+.product-img{height:92px;width:100%;object-fit:cover;background:linear-gradient(135deg,#222,#111)}
+.product-info{padding:8px}
+.product-name{font-size:.78rem;font-weight:800;line-height:1.15}
+.product-price{font-size:1rem;font-weight:900;margin-top:4px}
+.product-buy{width:100%;border:0;border-radius:9px;padding:7px;margin-top:6px;background:#fff;color:#111;font-weight:900;font-size:.75rem}
+.product-buy:active,.shop-cart-btn:active{transform:scale(.97)}
+.shop-note{font-size:.68rem;color:var(--mute);line-height:1.3}
+
+/* modal + carrinho */
+.shop-overlay{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.7);backdrop-filter:blur(8px)}
+.shop-overlay.open{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.shop-panel{width:min(100%,560px);max-height:86vh;overflow:auto;background:#120d18;border:1px solid rgba(255,255,255,.14);border-radius:24px 24px 0 0;padding:18px;box-shadow:0 -20px 70px rgba(0,0,0,.45);animation:sheetUp .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+.shop-panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.shop-panel h3{margin:0;font-size:1.05rem}
+.close-shop{width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.1);font-size:1.2rem}
+.shop-detail{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
+.shop-detail img{width:110px;height:110px;object-fit:cover;border-radius:16px}
+.shop-detail b{font-size:1.2rem}
+.shop-actions{display:flex;gap:8px;margin-top:12px}
+.shop-actions button{flex:1;border:0;border-radius:12px;padding:11px;font-weight:900}
+.add-cart{background:#fff;color:#111}.buy-now{background:linear-gradient(90deg,var(--cy),var(--pk));color:#111}
+.cart-item{display:grid;grid-template-columns:54px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.cart-item img{width:54px;height:54px;border-radius:10px;object-fit:cover}
+.qty{display:flex;align-items:center;gap:7px;margin-top:4px}
+.qty button{width:25px;height:25px;border:0;border-radius:50%;background:rgba(255,255,255,.13);color:#fff}
+.cart-total{display:flex;justify-content:space-between;font-size:1.05rem;font-weight:900;padding:14px 0}
+.checkout{width:100%;border:0;border-radius:12px;padding:12px;background:#fff;color:#111;font-weight:900}
+.empty-cart{padding:35px 10px;text-align:center;color:var(--mute)}
+.toast.shop-toast{z-index:80}
+@media(max-width:430px){
+ .slide{padding-right:70px;padding-left:14px}
+ .product-img{height:80px}
+ .shop-grid{gap:7px}
+ h2{font-size:clamp(1.4rem,8.8vw,2.1rem)}
+ .cp{font-size:clamp(.88rem,4vw,1.05rem)}
+}
+
+
+/* ===== V4: aba Shop ===== */
+.tabs{gap:26px}.tabs button{pointer-events:auto;background:none;border:0;padding:0 0 6px;font:inherit;color:rgba(255,255,255,.62);position:relative}
+.tabs button.on{color:#fff}.tabs button.on::after{content:"";position:absolute;left:25%;right:25%;bottom:0;height:3px;border-radius:2px;background:#fff}
+.shop-mode .top,.shop-mode .side{display:none!important}.shop-mode .feed{visibility:hidden}
+.shopview{position:absolute;inset:0;z-index:5;overflow-y:auto;padding:70px 16px 28px;background:linear-gradient(#0c0816,#050308);scrollbar-width:none}
+.shopview[hidden]{display:none}
+.sv-tabs{display:flex;gap:6px;position:sticky;top:-2px;z-index:2;padding:4px 0 10px;background:#0a0612}
+.sv-tabs button{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:999px;padding:8px 4px;font-weight:800;font-size:.8rem}
+.sv-tabs button.on{background:#fff;color:#16101f;box-shadow:2px 2px 0 var(--cy),-2px -2px 0 var(--pk)}
+.sv-pane{display:none}.sv-pane.on{display:block;animation:fadeIn .3s}
+.sv-pane h3{font:800 1.1rem var(--display);margin:6px 0}.sv-pane h4{margin:16px 0 6px}.sv-pane p{color:var(--mute);line-height:1.45;margin:0 0 10px;font-size:.92rem}
+.cards3{display:grid;gap:8px}.cards3 div,.steps li,.sv-pane details,.sim,.simout div{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:rgba(255,255,255,.07)}
+.cards3 b,.steps b{display:block}.cards3 span,.steps span{font-size:.82rem;color:var(--mute)}
+.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:8px}
+.steps li{counter-increment:s;position:relative;padding-left:46px}
+.steps li::before{content:counter(s);position:absolute;left:10px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--cy);color:#04151a;display:grid;place-items:center;font-weight:900}
+.steps li:nth-child(even)::before{background:var(--pk);color:#fff}
+.sv-pane details{margin-bottom:8px}.sv-pane summary{font-weight:700;cursor:pointer}.sv-pane details p{margin:8px 0 0}
+.sv-tools{margin-bottom:8px}
+.sv-tools input,.sim input,.cp-row input{width:100%;background:rgba(255,255,255,.1);border:1px solid var(--line);border-radius:10px;padding:9px 10px;color:#fff;font:inherit}
+.chips button.chip{color:inherit;font-family:inherit;animation:none}.chips button.chip.on{background:#fff;color:#16101f}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sim label{font-size:.75rem;color:var(--mute);display:grid;gap:4px}
+.simout{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.simout span{display:block;font-size:.72rem;color:var(--mute)}.simout b{font:800 1rem var(--display)}
+.simout .pos b{color:#5dffb0}.simout .neg b{color:#ff6b8b}
+.shopview .product-card{opacity:1;transform:none;animation:cardIn .4s both}.shopview .shop-wrap{margin-top:10px}
+.pic{display:grid;place-items:center;background:var(--g);border-radius:12px;font-size:2rem;aspect-ratio:1}
+.product-img.pic{height:92px;aspect-ratio:auto;border-radius:0;font-size:2.4rem}
+.cp-row{display:flex;gap:6px;margin:10px 0}.cp-row button{border:0;border-radius:10px;padding:0 12px;background:#fff;color:#111;font-weight:800}
+.pay{display:grid;gap:6px;margin:10px 0}.pay label{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px}
+.track{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
+.track li{opacity:.25;animation:lit .4s forwards;animation-delay:calc(var(--k)*1.1s)}@keyframes lit{to{opacity:1}}
+.track li::before{content:"✓ ";color:var(--cy);font-weight:900}
+.cart-line{display:flex;justify-content:space-between;font-size:.85rem;color:var(--mute)}
+
+/* ===== V5: texto, fundo, chat ===== */
+html,body{background:radial-gradient(60% 50% at 18% 18%,rgba(34,229,238,.2),transparent 70%),radial-gradient(60% 50% at 82% 82%,rgba(255,61,127,.22),transparent 70%),#050308}
+.slide h2,.cp{overflow-wrap:break-word;word-break:normal;hyphens:manual}
+h2{font-size:clamp(1.35rem,8cqw,2.3rem);text-shadow:.02em 0 var(--cy),-.02em 0 var(--pk)}
+.stat b,.range .nums b{white-space:normal;text-shadow:.02em 0 var(--cy),-.02em 0 var(--pk)}.stat b{font-size:clamp(1.2rem,6cqw,1.8rem)}
+.slide::before{background:radial-gradient(60% 40% at var(--ax,80%) 12%,var(--c1,rgba(34,229,238,.42)),transparent 70%),radial-gradient(60% 45% at var(--bx,10%) 90%,var(--c2,rgba(255,61,127,.45)),transparent 70%),radial-gradient(45% 30% at 50% 52%,rgba(107,44,245,.3),transparent 70%),linear-gradient(160deg,#140a28,#050308 60%,#0b0419);animation:aur 14s ease-in-out infinite alternate}
+@keyframes aur{from{filter:hue-rotate(0) saturate(1)}to{filter:hue-rotate(28deg) saturate(1.3)}}
+.slide::after{opacity:.6;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.12),transparent 20%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.08),transparent 22%),radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.6px) 0 0/24px 24px}
+.shopview{background:linear-gradient(160deg,#140a28,#050308 60%,#0b0419)}
+.ava .avatar-photo{position:absolute;inset:0}
+.frow{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.07);border-radius:14px;padding:10px;margin-bottom:8px}
+.frow span:last-child{display:grid;min-width:0}.frow small,.frow em{color:var(--mute);font-size:.78rem;font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cav{position:relative;flex:none;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--cy),var(--pk));display:grid;place-items:center;overflow:hidden;color:#16101f;font-weight:900}
+.cav img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.chh{display:flex;align-items:center;gap:10px;margin-bottom:10px}.chh button{border:0;background:rgba(255,255,255,.12);border-radius:50%;width:34px;height:34px}
+.msgs{display:flex;flex-direction:column;gap:6px;padding-bottom:12px}
+.m{max-width:80%;padding:8px 12px;border-radius:16px;background:rgba(255,255,255,.12);align-self:flex-start;overflow-wrap:break-word;font-size:.92rem}
+.m.me{align-self:flex-end;background:linear-gradient(90deg,var(--cy),var(--pk));color:#111}.m.typ{opacity:.6}
+.chin{position:sticky;bottom:-28px;display:flex;gap:6px;padding:10px 0;background:#0a0612}
+.chin input{flex:1;min-width:0;background:rgba(255,255,255,.1);border:1px solid var(--line);border-radius:999px;padding:9px 14px;color:#fff;font:inherit}
+.chin button{border:0;border-radius:999px;padding:0 16px;background:#fff;color:#111;font-weight:800}
+.tabs{gap:18px}
+
+/* ===== V6 ===== */
+#chatview:not([hidden]){display:flex;flex-direction:column;overflow:hidden;padding-bottom:12px}
+#chatview .ch-body{flex:1;min-height:0;display:flex;flex-direction:column}
+.ch-list,.msgs{flex:1;min-height:0;overflow-y:auto}
+.chin{position:static;flex:none;padding:10px 0 0;background:none}
+.on .cp{transition-delay:calc(.5s + var(--i)*.35s)}
+.s16{justify-content:flex-start;gap:10px;padding-top:72px;padding-bottom:96px}
+.s16 .art{height:auto}.s16 .cp{font-size:clamp(.8rem,3.7cqw,.98rem);padding:5px 10px}.s16 .lines{gap:5px}.s16 h2{font-size:clamp(1.3rem,7cqw,2rem)}
+.s17{--ax:50%;--bx:50%;--c1:rgba(255,61,127,.42);--c2:rgba(34,229,238,.42)}a.btn{text-decoration:none;display:inline-block}
+
+.s18{--ax:15%;--bx:85%}.s19{--ax:85%;--bx:15%;--c1:rgba(255,61,127,.32);--c2:rgba(34,229,238,.3)}
+.dash{width:100%;display:grid;gap:10px}.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kp .stat{padding:8px}.kp .stat b{white-space:nowrap;font-size:clamp(.78rem,3.9cqw,1.1rem)}.kp .stat span{font-size:.66rem;line-height:1.2;display:block}
+.hbs{display:grid;gap:7px}.hb{display:grid;grid-template-columns:92px 1fr 46px;gap:8px;align-items:center;font-size:.76rem}
+.hb i{display:block;height:12px;border-radius:6px;width:var(--w);background:linear-gradient(90deg,var(--cy),var(--pk));transform:scaleX(0);transform-origin:left}
+.on .hb i{transform:none;transition:transform 1s cubic-bezier(.2,.8,.2,1) .3s}.hb b{text-align:right}
+.dash .chips{gap:5px}.dash .chip{font-size:.72rem;padding:3px 9px}
+@media(prefers-reduced-motion:reduce){.hb i{transform:none}}
+
+.cmt{position:absolute;left:0;right:0;bottom:0;height:70%;z-index:9;background:#120d18;border-radius:20px 20px 0 0;border-top:1px solid var(--line);display:none;flex-direction:column;padding:12px 14px}
+.cmt.open{display:flex;animation:sheetUp .3s cubic-bezier(.2,.8,.2,1)}
+.cmt-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.cmt-h button{border:0;background:rgba(255,255,255,.12);border-radius:50%;width:32px;height:32px;font-size:1.1rem}
+.cmt-l{flex:1;min-height:0;overflow-y:auto}
+.cm-i{display:flex;gap:10px;padding:8px 0;align-items:flex-start}.cm-i>div{flex:1;min-width:0}.cm-i b{font-size:.8rem;color:var(--mute)}.cm-i p{margin:2px 0 0;font-size:.9rem;line-height:1.35;overflow-wrap:break-word}
+.cm-i .cav{width:34px;height:34px}
+.cm-l{border:0;background:none;color:var(--mute);font-size:.78rem;padding:0 2px}.cm-l.on{color:var(--pk)}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <nav class="top" id="top" aria-label="Progresso dos vídeos"></nav>
+  <div class="tabs"><button type="button" class="on" data-tab="feed">Para Você</button><button type="button" data-tab="shop">🛍️ Shop</button><button type="button" data-tab="chat">💬 Amigos</button></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <main class="feed" id="feed" tabindex="-1">
+    <section class="slide s1" data-title="O que é o TikTok" data-likes="1284" data-tags="#tiktok #explicando" data-desc="O que é o TikTok, em poucos segundos">
+      <div class="art play"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon class="c" points="10,5 34,20 10,35"/><polygon class="p" points="10,5 34,20 10,35"/><polygon class="w" points="10,5 34,20 10,35"/></svg></div>
+      <h2>O que é o TikTok?</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Um app de vídeos curtos.</span>
+        <span class="cp" style="--i:1">Você assiste, cria e compartilha.</span>
+        <span class="cp k" style="--i:2">Tudo em tela cheia, na vertical.</span>
+        <span class="cp" style="--i:3"><span class="nudge">↑</span> Deslize para o próximo</span>
+      </div>
+    </section>
+
+    <section class="slide s2" data-title="Como funciona o feed" data-likes="967" data-tags="#paravoce #feed" data-desc="Como o feed escolhe o que aparece para você">
+      <div class="art"><div class="deck" aria-hidden="true"><i></i><i></i></div></div>
+      <h2>Como funciona o feed</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Você abre na aba Para Você.</span>
+        <span class="cp" style="--i:1">Deslize e o próximo vídeo aparece.</span>
+        <span class="cp k" style="--i:2">Curtidas, comentários e tempo assistindo ajudam a escolher.</span>
+      </div>
+    </section>
+
+    <section class="slide s3" data-title="Criando vídeos" data-likes="2031" data-tags="#criarvideo #edicao" data-desc="Do primeiro corte à publicação">
+      <div class="art"><div class="trk" aria-hidden="true"><i style="--w:90%;--d:.2s"></i><i style="--w:62%;--d:.5s"></i><i style="--w:76%;--d:.8s"></i></div></div>
+      <h2>Criando vídeos</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">1. Grave ou envie um vídeo.</span>
+        <span class="cp" style="--i:1">2. Corte e edite.</span>
+        <span class="cp" style="--i:2">3. Escolha um som.</span>
+        <span class="cp k" style="--i:3">4. Adicione texto e publique.</span>
+      </div>
+    </section>
+
+    <section class="slide s4" data-title="Tendências" data-likes="1745" data-tags="#tendencias #desafio" data-desc="Como uma ideia vira tendência">
+      <div class="art"><div class="chips" aria-hidden="true"><span class="chip">#receitarapida</span><span class="chip">#desafio</span><span class="chip">#humor</span><span class="chip">#antesedepois</span><span class="chip">#diy</span></div></div>
+      <h2>Tendências</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Sons, desafios e formatos se espalham.</span>
+        <span class="cp" style="--i:1">Uma pessoa cria. Muita gente recria.</span>
+        <span class="cp k" style="--i:2">Escolha as que combinam com você.</span>
+      </div>
+    </section>
+
+    <section class="slide s5" data-title="Quem está por trás" data-likes="2418" data-tags="#bytedance #negocios" data-desc="Quem é dona do TikTok e quanto fatura">
+      <div class="art tall"><div class="stats">
+        <div class="stat"><b data-to="186" data-pre="US$ " data-suf=" bi">US$ 186 bi</b><span>receita estimada da ByteDance em 2025</span></div>
+        <div class="stat"><b data-to="150" data-suf=" mil+">150 mil+</b><span>funcionários no mundo</span></div>
+      </div></div>
+      <h2>Quem está por trás</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">O TikTok faz parte da ByteDance.</span>
+        <span class="cp" style="--i:1">Receita estimada: cerca de US$ 186 bilhões em 2025.</span>
+        <span class="cp k" style="--i:2">Esse valor é da empresa toda, não só do TikTok.</span>
+        <span class="cp src" style="--i:3">Receita: estimativas de mercado (Bloomberg, Sacra).</span>
+      </div>
+    </section>
+
+    <section class="slide s6" data-title="De onde ele veio" data-likes="1976" data-tags="#historia #musically" data-desc="Da China ao mundo: 2016 a 2018">
+      <div class="art tall"><div class="tl" aria-hidden="true"><div><b>2016</b>Douyin<br>na China</div><div><b>2017</b>TikTok<br>no mundo</div><div><b>2018</b>Fusão com<br>Musical.ly</div></div></div>
+      <h2>De onde ele veio</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">2016: a ByteDance lança o Douyin, na China.</span>
+        <span class="cp" style="--i:1">2017: o TikTok é lançado no mercado internacional.</span>
+        <span class="cp" style="--i:2">2017: a ByteDance compra o Musical.ly.</span>
+        <span class="cp k" style="--i:3">2018: os dois apps se integram e o TikTok cresce rápido.</span>
+      </div>
+    </section>
+
+    <section class="slide s7" data-title="O TikTok no Brasil" data-likes="2754" data-tags="#brasil #economia" data-desc="O peso do TikTok na economia brasileira">
+      <div class="art tall"><div class="range" aria-hidden="true">
+        <div class="nums"><div><b data-to="18.6" data-dec="1" data-pre="R$ " data-suf=" bi">R$ 18,6 bi</b>estimativa mínima</div><div><b data-to="37.3" data-dec="1" data-pre="R$ " data-suf=" bi">R$ 37,3 bi</b>estimativa máxima</div></div>
+        <div class="bar"><i></i></div>
+      </div></div>
+      <h2>O TikTok no Brasil</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Um estudo do próprio TikTok estimou sua contribuição ao PIB em 2025.</span>
+        <span class="cp k" style="--i:1">Entre R$ 18,6 bi e R$ 37,3 bi.</span>
+        <span class="cp" style="--i:2">Conta só o investimento em anúncios (TikTok Ads).</span>
+        <span class="cp src" style="--i:3">Fonte: Relatório de Impacto Econômico do TikTok no Brasil, com a LCA Consultoria.</span>
+      </div>
+    </section>
+
+    <section class="slide s9" data-title="Recursos do TikTok" data-likes="2860" data-tags="#recursos #app" data-desc="As principais ferramentas disponíveis no TikTok">
+      <div class="art"><div class="chips" aria-hidden="true">
+        <span class="chip">Vídeos</span><span class="chip">LIVE</span><span class="chip">Dueto</span>
+        <span class="chip">Costurar</span><span class="chip">Efeitos</span><span class="chip">Filtros</span>
+      </div></div>
+      <h2>O que dá para fazer?</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Assistir e publicar vídeos curtos.</span>
+        <span class="cp" style="--i:1">Usar músicas, efeitos, filtros e textos.</span>
+        <span class="cp" style="--i:2">Interagir com outros criadores.</span>
+        <span class="cp k" style="--i:3">Também existem recursos como Dueto, Costurar e transmissões LIVE.</span>
+      </div>
+    </section>
+
+    <section class="slide s10" data-title="Como um vídeo cresce" data-likes="3184" data-tags="#viral #criadores" data-desc="Por que alguns vídeos alcançam muitas pessoas">
+      <div class="art"><div class="trk" aria-hidden="true">
+        <i style="--w:35%;--d:.1s"></i><i style="--w:58%;--d:.35s"></i><i style="--w:82%;--d:.6s"></i>
+      </div></div>
+      <h2>Como um vídeo cresce?</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">O sistema observa sinais de interesse.</span>
+        <span class="cp" style="--i:1">Tempo assistido, curtidas, compartilhamentos e comentários ajudam.</span>
+        <span class="cp" style="--i:2">Legenda, sons e hashtags também entram na análise.</span>
+        <span class="cp k" style="--i:3">Um vídeo pode chegar a pessoas que ainda não seguem o criador.</span>
+        <span class="cp src" style="--i:4">Fonte: explicação oficial do TikTok sobre o feed Para Você.</span>
+      </div>
+    </section>
+
+    <section class="slide s11" data-title="Criadores e renda" data-likes="3521" data-tags="#criadores #renda" data-desc="Como o TikTok pode fazer parte de um negócio">
+      <div class="art tall"><div class="stats">
+        <div class="stat"><b>Conteúdo</b><span>vídeos, lives e comunidades</span></div>
+        <div class="stat"><b>Publicidade</b><span>marcas podem anunciar na plataforma</span></div>
+        <div class="stat"><b>Negócios</b><span>criadores também podem divulgar produtos e serviços</span></div>
+      </div></div>
+      <h2>Criadores e renda</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">A renda de um criador não é igual para todos.</span>
+        <span class="cp" style="--i:1">Ela pode depender de publicidade, parcerias e recursos disponíveis na plataforma.</span>
+        <span class="cp k" style="--i:2">Visualizações, sozinhas, não significam um valor fixo de pagamento.</span>
+      </div>
+    </section>
+
+    <section class="slide s12" data-title="Segurança e privacidade" data-likes="2647" data-tags="#seguranca #privacidade" data-desc="Ferramentas para controlar sua experiência">
+      <div class="art"><div class="ticks" aria-hidden="true"><b>✓</b><b>✓</b><b>✓</b><b>✓</b></div></div>
+      <h2>Segurança</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Revise quem pode ver seus vídeos e interagir com você.</span>
+        <span class="cp" style="--i:1">Use bloqueio e denúncia quando necessário.</span>
+        <span class="cp" style="--i:2">Existem ferramentas de tempo de tela e controles para famílias.</span>
+        <span class="cp k" style="--i:3">No Brasil, o TikTok mantém medidas específicas de proteção para adolescentes.</span>
+        <span class="cp src" style="--i:4">Fonte: TikTok Newsroom, atualizações de segurança de 2025–2026.</span>
+      </div>
+    </section>
+
+    <section class="slide s8" data-title="Dicas de uso" data-likes="3302" data-tags="#dicas #bemestar" data-desc="Quatro dicas para usar melhor">
+      <div class="art"><div class="ticks" aria-hidden="true"><b>✓</b><b>✓</b><b>✓</b><b>✓</b></div></div>
+      <h2>Dicas de uso</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Comece com um gancho.</span>
+        <span class="cp" style="--i:1">Use legendas.</span>
+        <span class="cp" style="--i:2">Revise sua privacidade.</span>
+        <span class="cp k" style="--i:3">Faça pausas do celular.</span>
+      </div>
+    </section>
+
+    <section class="slide s13" data-title="Curiosidades" data-likes="4098" data-tags="#curiosidade #historia" data-desc="Fatos interessantes sobre a história do TikTok">
+      <div class="art"><div class="chips" aria-hidden="true"><span class="chip">Douyin</span><span class="chip">Musical.ly</span><span class="chip">TikTok</span></div></div>
+      <h2>Você sabia?</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">O aplicativo chinês Douyin foi lançado antes do TikTok internacional.</span>
+        <span class="cp" style="--i:1">A ByteDance comprou o Musical.ly em 2017.</span>
+        <span class="cp" style="--i:2">Em 2018, Musical.ly e TikTok foram unidos em uma plataforma global.</span>
+        <span class="cp k" style="--i:3">Isso ajudou a acelerar a expansão internacional do TikTok.</span>
+        <span class="cp src" style="--i:4">Fonte: TikTok Newsroom, 2 de agosto de 2018.</span>
+      </div>
+    </section>
+
+    
+    <section class="slide s18" data-title="Dashboard: funcionários" data-likes="3340" data-tags="#dashboard #funcionarios" data-desc="Onde trabalham as pessoas por trás do TikTok">
+      <div class="art tall"><div class="dash">
+        <div class="kp"><div class="stat"><b data-to="150" data-suf=" mil+">150 mil+</b><span>ByteDance, no mundo</span></div><div class="stat"><b data-to="40" data-pre="~" data-suf=" mil">~40 mil</b><span>só no TikTok</span></div><div class="stat"><b data-to="7" data-pre="~" data-suf=" mil">~7 mil</b><span>TikTok nos EUA</span></div></div>
+        <div class="hbs"><div class="hb"><span>China</span><i style="--w:72.3%"></i><b>72,3%</b></div><div class="hb"><span>Resto do mundo</span><i style="--w:27.7%"></i><b>27,7%</b></div></div>
+        <div class="chips"><span class="chip">Pequim (sede)</span><span class="chip">Xangai</span><span class="chip">Singapura</span><span class="chip">Londres</span><span class="chip">Dublin</span><span class="chip">Los Angeles</span><span class="chip">Nova York</span><span class="chip">Tóquio</span><span class="chip">Berlim</span><span class="chip">São Paulo</span></div>
+      </div></div>
+      <h2>Onde eles trabalham</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">A maior parte fica na China: 72,3% do quadro, segundo a Revelio Labs.</span>
+        <span class="cp" style="--i:1">Fora dela, Estados Unidos e Singapura lideram.</span>
+        <span class="cp k" style="--i:2">Os números variam conforme a fonte e o método de contagem.</span>
+        <span class="cp src" style="--i:3">Fontes: Revelio Labs (mar/2026), PitchBook, site da ByteDance.</span>
+      </div>
+    </section>
+
+    <section class="slide s19" data-title="Dashboard: receita" data-likes="3810" data-tags="#dashboard #receita" data-desc="Quanto a dona do TikTok fatura atualmente">
+      <div class="art tall"><div class="dash">
+        <div class="kp"><div class="stat"><b data-to="155" data-pre="US$ " data-suf=" bi">US$ 155 bi</b><span>ByteDance, 2024</span></div><div class="stat"><b data-to="186" data-pre="US$ " data-suf=" bi">US$ 186 bi</b><span>2025 (estimativa)</span></div><div class="stat"><b data-to="50" data-pre="~US$ " data-suf=" bi">~US$ 50 bi</b><span>lucro em 2025</span></div></div>
+        <div class="hbs"><div class="hb"><span>Publicidade</span><i style="--w:60%"></i><b>~60%</b></div><div class="hb"><span>LIVEs</span><i style="--w:26%"></i><b>~26%</b></div><div class="hb"><span>Outros</span><i style="--w:14%"></i><b>~14%</b></div></div>
+      </div></div>
+      <h2>Quanto fatura</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">A ByteDance mira cerca de US$ 186 bi em 2025, uns 20% acima de 2024.</span>
+        <span class="cp" style="--i:1">O TikTok não divulga a receita só do app: estimativas falam em ~US$ 27 bi nos EUA e US$ 6,3 bi na Europa em 2024.</span>
+        <span class="cp k" style="--i:2">Ainda não achei um número oficial de 2026.</span>
+        <span class="cp src" style="--i:3">Fontes: Bloomberg e Sacra (estimativas; a empresa é privada).</span>
+      </div>
+    </section>
+
+    <section class="slide s15" data-title="TikTok Shop" data-likes="5210" data-tags="#tiktokshop #compras" data-desc="A loja dentro do TikTok">
+      <div class="art"><div class="chips" aria-hidden="true"><span class="chip">Vídeo</span><span class="chip">LIVE</span><span class="chip">Vitrine</span><span class="chip">Afiliados</span></div></div>
+      <h2>TikTok Shop</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">É a loja dentro do TikTok: você vê o produto no conteúdo e compra no app.</span>
+        <span class="cp" style="--i:1">Chegou ao Brasil em maio de 2025.</span>
+        <span class="cp k" style="--i:2">Quem divulga e vende gera comissão.</span>
+        <button class="btn" type="button" data-go-shop>Abrir a aba Shop →</button>
+      </div>
+    </section>
+
+<section class="slide s16" data-title="Resumo" data-likes="4520" data-tags="#resumo #tiktok" data-desc="Tudo sobre o TikTok em poucos pontos">
+      <div class="art"><div class="chips" aria-hidden="true">
+        <span class="chip">Desde 2017</span><span class="chip">ByteDance</span><span class="chip">Vídeos</span>
+        <span class="chip">Feed Para Você</span><span class="chip">Criadores</span><span class="chip">Shop</span>
+      </div></div>
+      <h2>TikTok em resumo</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">📱 Plataforma de vídeos curtos e conteúdo vertical.</span>
+        <span class="cp" style="--i:1">🧠 O feed Para Você usa sinais de interação para personalizar recomendações.</span>
+        <span class="cp" style="--i:2">🌎 O app ganhou alcance internacional após a integração com o Musical.ly.</span>
+        <span class="cp" style="--i:3">💰 Criadores e empresas usam a plataforma para conteúdo, divulgação e vendas (TikTok Shop).</span>
+        <span class="cp k" style="--i:4">🔐 Segurança, privacidade e uso consciente também fazem parte da experiência.</span>
+        <button class="btn" id="again2" type="button">Voltar ao início</button>
+      </div>
+    </section>
+ 
+    <section class="slide s17" data-title="Abra o TikTok" data-likes="6120" data-tags="#tiktok #suavez" data-desc="Agora é com você">
+      <div class="art play"><svg viewBox="0 0 40 40" aria-hidden="true"><polygon class="c" points="10,5 34,20 10,35"/><polygon class="p" points="10,5 34,20 10,35"/><polygon class="w" points="10,5 34,20 10,35"/></svg></div>
+      <h2>Agora é com você!</h2>
+      <div class="lines">
+        <span class="cp" style="--i:0">Você já sabe como o TikTok funciona.</span>
+        <span class="cp" style="--i:1">Crie, descubra e compre com segurança.</span>
+        <span class="cp k" style="--i:2">Toque abaixo e abra o TikTok agora.</span>
+        <a class="btn" href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">Abrir o TikTok →</a>
+        <span class="cp src" style="--i:3">tiktok.com</span>
+      </div>
+    </section>
+ </main>
+  <section class="shopview" id="chatview" hidden aria-label="Mensagens"><div class="ch-body"></div></section>
+  <section class="shopview" id="shopview" hidden aria-label="TikTok Shop">
+    <nav class="sv-tabs"><button type="button" class="on" data-sv="learn">Como funciona</button><button type="button" data-sv="store">Loja</button><button type="button" data-sv="sell">Vender</button></nav>
+    <div class="sv-pane on" data-pane="learn">
+      <h3>🛍️ O que é o TikTok Shop?</h3>
+      <p>É um marketplace dentro do TikTok: você descobre o produto no conteúdo e compra sem sair do app. No Brasil, o lançamento oficial foi em 8 de maio de 2025.</p>
+      <div class="cards3"><div><b>🎬 Vídeos compráveis</b><span>O produto vinculado aparece com link de compra no vídeo.</span></div><div><b>🔴 LIVE</b><span>O vendedor mostra e fixa produtos durante a transmissão.</span></div><div><b>🏬 Vitrine e aba Shop</b><span>A loja reúne o catálogo em um só lugar.</span></div></div>
+      <h4>Como uma venda acontece</h4>
+      <ol class="steps"><li><b>Vendedor cadastra a loja</b><span>Pelo Seller Center, com CPF ou CNPJ, e publica os produtos.</span></li><li><b>Criador divulga</b><span>Afiliados escolhem produtos e mostram em vídeos e LIVEs.</span></li><li><b>Comprador compra no app</b><span>Escolhe, paga e acompanha o pedido sem sair do TikTok.</span></li><li><b>Entrega e avaliação</b><span>O pedido é enviado; o criador recebe comissão se houver venda.</span></li></ol>
+      <h4>Perguntas rápidas</h4>
+      <details><summary>Quem ganha dinheiro?</summary><p>O vendedor fica com a venda, menos as taxas da plataforma e a comissão do afiliado. O criador ganha comissão quando a venda acontece pelo conteúdo dele.</p></details>
+      <details><summary>Como comprar com segurança?</summary><p>Compre dentro do app, confira a loja e as avaliações e desconfie de quem pede pagamento fora da plataforma.</p></details>
+      <details><summary>A aba Loja é real?</summary><p>Não. Produtos, preços e pagamento da aba Loja são uma simulação educativa e não geram compra de verdade.</p></details>
+      <p class="shop-note">Fontes: TikTok Newsroom e Propmark (lançamento no Brasil); TikTok Shop Academy (taxas).</p>
+    </div>
+    <div class="sv-pane" data-pane="store">
+      <div class="shop-head"><span class="shop-badge">🛍️ Loja demo</span><button class="shop-cart-btn" type="button" data-open-cart>🛒 Carrinho <span class="cart-count">0</span></button></div>
+      <div class="shop-wrap"><div class="sv-tools"><input id="q" type="search" placeholder="Buscar produto" aria-label="Buscar produto"></div>
+      <div class="chips" id="cats"><button type="button" class="chip on" data-cat="Todos">Todos</button><button type="button" class="chip" data-cat="Eletrônicos">Eletrônicos</button><button type="button" class="chip" data-cat="Beleza">Beleza</button><button type="button" class="chip" data-cat="Casa">Casa</button></div>
+      <div class="shop-grid" data-shop-grid></div>
+      <div class="shop-note">Simulação educativa. Teste o cupom TIKTOK10 e o frete grátis acima de R$ 150.</div></div>
+    </div>
+    <div class="sv-pane" data-pane="sell">
+      <h3>💸 Simulador do vendedor</h3>
+      <p>Veja quanto sobra de cada venda depois das taxas. Os valores iniciais são de referência (6% + R$ 4 por item, vigentes até 14/07/2026). A política mudou depois disso, então confira a atual no Seller Center. Impostos não entram na conta.</p>
+      <div class="sim"><label>Preço (R$)<input id="sp" type="number" value="89.9" min="0" step="0.01"></label><label>Custo do produto (R$)<input id="sc" type="number" value="40" min="0" step="0.01"></label><label>Taxa da plataforma (%)<input id="st" type="number" value="6" min="0" step="0.1"></label><label>Tarifa fixa por item (R$)<input id="sf" type="number" value="4" min="0" step="0.1"></label><label>Comissão do afiliado (%)<input id="sa" type="number" value="10" min="0" step="0.5"></label><label>Frete pago por você (R$)<input id="ss" type="number" value="0" min="0" step="0.1"></label></div>
+      <div class="simout" id="sout"></div>
+    </div>
+  </section>
+</div>
+
+<div class="side" aria-label="Navegação">
+  <button id="prev" type="button" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
+  <button id="next" type="button" aria-label="Próximo vídeo"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+</div>
+
+<script>
+(function(){
+  var feed=document.getElementById('feed'),stage=document.getElementById('stage'),top=document.getElementById('top'),toast=document.getElementById('toast'),
+      slides=[].slice.call(feed.querySelectorAll('.slide')),n=slides.length,prev=document.getElementById('prev'),next=document.getElementById('next'),
+      rm=matchMedia('(prefers-reduced-motion: reduce)'),cur=0,segs=[],tt,last=0;
+  var HEART='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+      SAVE='M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z',SHARE='M14 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z';
+  window.AVT=function(n){var bg=['#22e5ee','#ff3d7f','#ffb347','#6b2cf5','#5dffb0','#ff7a59','#4da3ff','#c77dff'],sk=['#f1c9a5','#d9a574','#b9794e','#8d5a3b','#f7d9c2','#6f4630'],hr=['#1b1b1b','#4a2c17','#8b5a2b','#d6a24b','#2a1a3a','#7a1f1f'],sh=['#ffffff','#16101f','#ff3d7f','#22e5ee','#6b2cf5','#ffb347'],lg=n%3!==0;
+var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="'+bg[n%8]+'"/>'+(lg?'<rect x="26" y="30" width="48" height="48" rx="20" fill="'+hr[n*5%6]+'"/>':'')+'<ellipse cx="50" cy="104" rx="36" ry="26" fill="'+sh[n*7%6]+'"/><rect x="43" y="60" width="14" height="14" fill="'+sk[n*3%6]+'"/><circle cx="50" cy="42" r="19" fill="'+sk[n*3%6]+'"/><path d="M31 41a19 19 0 0 1 38 0c-6-9-14-11-19-11s-13 2-19 11z" fill="'+hr[n*5%6]+'"/><circle cx="43" cy="44" r="2" fill="#222"/><circle cx="57" cy="44" r="2" fill="#222"/><path d="M44 52q6 5 12 0" stroke="#222" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+return 'data:image/svg+xml;utf8,'+encodeURIComponent(s)};
+var CR=window.CR=[{u:'ana.clara',n:'Ana Clara',img:5},{u:'joao.vlog',n:'João',img:12},{u:'maria.dicas',n:'Maria',img:47},{u:'lucas.edit',n:'Lucas',img:32},{u:'bia.tech',n:'Bia',img:44},{u:'pedro.gamer',n:'Pedro',img:14},{u:'julia.shop',n:'Julia',img:25},{u:'rafa.fit',n:'Rafa',img:8}];function fmt(v){return v>=1000?(v/1000).toFixed(1).replace('.',',')+' mil':String(v)}
+  function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800)}
+
+  slides.forEach(function(s,i){
+    var likes=+s.dataset.likes,liked=false,C=CR[i%CR.length];
+    var b=document.createElement('button');b.className='seg';b.type='button';
+    b.setAttribute('aria-label','Ir para '+s.dataset.title+' ('+(i+1)+' de '+n+')');b.innerHTML='<span></span>';b.onclick=function(){go(i)};
+    top.appendChild(b);segs.push(b);
+
+    s.insertAdjacentHTML('beforeend',
+     '<div class="rail"><div class="ava">'+C.n[0]+'<img class="avatar-photo" src="'+AVT(C.img)+'" alt="Foto de perfil de '+C.n+'" onerror="this.remove()"><button class="fol" type="button" aria-label="Seguir @'+C.u+'">+</button></div>'+
+     '<button class="act lk" type="button" aria-label="Curtir" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="'+HEART+'"/></svg><span>'+fmt(likes)+'</span></button>'+
+     '<button class="act cm" type="button" aria-label="Comentários"><svg viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8l-4 4V5a1 1 0 0 1 1-1z"/></svg><span>0</span></button>'+
+     '<button class="act sv" type="button" aria-label="Salvar" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="'+SAVE+'"/></svg><span>Salvar</span></button>'+
+     '<button class="act sh" type="button" aria-label="Compartilhar"><svg viewBox="0 0 24 24"><path d="'+SHARE+'"/></svg><span>Enviar</span></button>'+
+     '<div class="disc" aria-hidden="true"></div></div>'+
+     '<div class="info"><div class="user">@'+C.u+'</div><div class="desc">'+s.dataset.desc+' <b>'+s.dataset.tags+'</b></div>'+
+     '<div class="snd" aria-hidden="true"><span>♫</span><span>som original · Explicando o app    </span></div></div>'+
+     '<div class="scrub"><i></i></div>');
+
+    var lk=s.querySelector('.lk'),sv=s.querySelector('.sv'),fol=s.querySelector('.fol');
+    function like(on){
+      liked=on;likes+=on?1:-1;lk.classList.toggle('is',on);lk.setAttribute('aria-pressed',on);
+      lk.querySelector('span').textContent=fmt(likes);lk.classList.remove('pop');void lk.offsetWidth;if(on)lk.classList.add('pop');
+    }
+    lk.onclick=function(){like(!liked)};
+    sv.onclick=function(){var on=!sv.classList.contains('is');sv.classList.toggle('is',on);sv.classList.toggle('sv',true);sv.setAttribute('aria-pressed',on);say(on?'Salvo nos favoritos':'Removido dos favoritos')};
+    fol.onclick=function(){var on=!fol.classList.contains('is');fol.classList.toggle('is',on);fol.textContent=on?'✓':'+';say(on?'Você segue @'+C.u:'Você deixou de seguir')};
+    s.querySelector('.sh').onclick=function(){
+      var d={title:document.title,url:location.href};
+      if(navigator.share){navigator.share(d).catch(function(){})}
+      else if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){say('Link copiado')},function(){say('Copie o link na barra do navegador')})}
+      else say('Copie o link na barra do navegador');
+    };
+    // toque duplo curte, como no app
+    s.addEventListener('click',function(e){
+      if(e.target.closest('button'))return;
+      var t=Date.now();
+      if(t-last<320){
+        var r=s.getBoundingClientRect(),h=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        h.setAttribute('viewBox','0 0 24 24');h.setAttribute('class','burst');h.style.left=(e.clientX-r.left)+'px';h.style.top=(e.clientY-r.top)+'px';
+        h.innerHTML='<path d="'+HEART+'"/>';s.appendChild(h);setTimeout(function(){h.remove()},850);
+        if(!liked)like(true);last=0;
+      }else last=t;
+    });
+  });
+
+  function countUp(s){
+    if(rm.matches)return;
+    [].forEach.call(s.querySelectorAll('[data-to]'),function(el){
+      var to=+el.dataset.to,d=+el.dataset.dec||0,p=el.dataset.pre||'',x=el.dataset.suf||'',t0=performance.now();
+      (function f(t){var k=Math.min(1,(t-t0)/1300),v=to*(1-Math.pow(1-k,3));
+        el.textContent=p+v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})+x;if(k<1)requestAnimationFrame(f)})(t0);
+    });
+  }
+  function go(i){i=Math.max(0,Math.min(n-1,i));feed.scrollTo({top:slides[i].offsetTop,behavior:rm.matches?'auto':'smooth'})}
+  function set(i){
+    var cz=document.querySelector(".cmt");if(cz)cz.classList.remove("open");cur=i;slides.forEach(function(s,k){s.classList.toggle('on',k===i)});countUp(slides[i]);
+    segs.forEach(function(b,k){b.classList.toggle('done',k<=i);if(k===i)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+    prev.disabled=i===0;next.disabled=i===n-1;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)set(slides.indexOf(e.target))})},{root:feed,threshold:.6});
+    slides.forEach(function(s){io.observe(s)});
+  }
+  prev.onclick=function(){go(cur-1)};next.onclick=function(){go(cur+1)};
+  
+  var again2=document.getElementById('again2'); if(again2) again2.onclick=function(){go(0)};
+  addEventListener('keydown',function(e){
+    if(e.altKey||e.ctrlKey||e.metaKey)return;
+    if(document.body.classList.contains('shop-mode')||/^(INPUT|TEXTAREA)$/.test(e.target.tagName))return;var k=e.key,btn=e.target&&e.target.tagName==='BUTTON';
+    if(k==='ArrowDown'||k==='PageDown'||k==='j'||(k===' '&&!btn&&!e.shiftKey)){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowUp'||k==='PageUp'||k==='k'||(k===' '&&!btn&&e.shiftKey)){e.preventDefault();go(cur-1)}
+    else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(n-1)}
+    else if(k==='l'||k==='L'){slides[cur].querySelector('.lk').click()}
+  });
+  addEventListener('resize',function(){feed.style.scrollBehavior='auto';feed.scrollTop=slides[cur].offsetTop;feed.style.scrollBehavior=''});
+  feed.scrollTop=0;set(0);feed.focus({preventScroll:true});
+})();
+</script>
+
+<script>
+(function(){
+  let cat="Todos",q="",coupon=0;
+  const P=(id,name,price,c,e,desc)=>({id,name,price,cat:c,e,desc});
+  const PRODUCTS=[P(1,"Fone Bluetooth Pro",89.9,"Eletrônicos","🎧","Fone sem fio com estojo de carregamento."),P(2,"Smartwatch Fit",129.9,"Eletrônicos","⌚","Relógio inteligente com visual esportivo."),P(3,"Ring Light Mini",59.9,"Eletrônicos","💡","Iluminação compacta para vídeos e chamadas."),P(4,"Suporte para Celular",39.9,"Eletrônicos","📱","Suporte de mesa para gravar com mais estabilidade."),P(5,"Kit Skincare",74.9,"Beleza","🧴","Kit básico de cuidados com a pele."),P(6,"Paleta de Sombras",49.9,"Beleza","🎨","Paleta com cores para maquiagem do dia a dia."),P(7,"Garrafa Térmica 1L",69.9,"Casa","🥤","Mantém bebidas quentes ou geladas por horas."),P(8,"Organizador de Mesa",34.9,"Casa","🗂️","Organiza canetas, cabos e acessórios.")];
+  const G=["#22e5ee,#6b2cf5","#6b2cf5,#ff3d7f","#ff3d7f,#ffb347","#ffb347,#22e5ee"];
+  PRODUCTS.forEach((p,i)=>p.g="linear-gradient(135deg,"+G[i%4]+")");
+  const pic=p=>`<div class="pic" style="--g:${p.g}" role="img" aria-label="${p.name}">${p.e}</div>`;
+  function totals(){const s=cart.reduce((a,i)=>a+product(i.id).price*i.qty,0),d=s*coupon,f=(!s||s-d>=150)?0:14.9;return{s,d,f,t:s-d+f}}
+  const DB={g(k){try{return localStorage.getItem(k)}catch(e){}try{return JSON.parse(window.name||"{}")[k]||null}catch(e){return null}},s(k,v){try{localStorage.setItem(k,v);return}catch(e){}try{const o=JSON.parse(window.name||"{}");o[k]=v;window.name=JSON.stringify(o)}catch(e){}}};
+  let cart=[];try{cart=JSON.parse(DB.g("demoTikTokCart")||"[]")}catch(e){}
+  const money = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  const saveCart = () => {
+    DB.s("demoTikTokCart",JSON.stringify(cart));
+    document.querySelectorAll(".cart-count").forEach(el=>el.textContent=cart.reduce((a,b)=>a+b.qty,0));
+  };
+  function product(id){ return PRODUCTS.find(p=>p.id===id); }
+  function add(id,qty=1){
+    const p=product(id); if(!p) return;
+    const item=cart.find(x=>x.id===id);
+    if(item) item.qty+=qty; else cart.push({id,qty});
+    saveCart(); toastShop("Adicionado! Carrinho: "+cart.reduce((a,b)=>a+b.qty,0)+" item(ns)");
+  }
+  function renderGrids(){
+    document.querySelectorAll("[data-shop-grid]").forEach(grid=>{
+      grid.innerHTML=PRODUCTS.filter(p=>(cat==="Todos"||p.cat===cat)&&p.name.toLowerCase().includes(q)).map(p=>`
+        <article class="product-card">
+          <div class="product-img pic" style="--g:${p.g}" role="img" aria-label="${p.name}">${p.e}</div>
+          <div class="product-info">
+            <div class="product-name">${p.name}</div>
+            <div class="product-price">${money(p.price)}</div>
+            <button class="product-buy" type="button" data-product="${p.id}">Ver produto</button>
+          </div>
+        </article>`).join("")||'<p class="shop-note">Nenhum produto encontrado.</p>';
+    });
+  }
+  function toastShop(msg){
+    const el=document.getElementById("toast");
+    if(!el)return;
+    el.textContent=msg;el.classList.add("show","shop-toast");
+    clearTimeout(window.__shopToast);window.__shopToast=setTimeout(()=>el.classList.remove("show"),1800);
+  }
+  const overlay=document.createElement("div");
+  overlay.className="shop-overlay";
+  overlay.innerHTML='<div class="shop-panel" role="dialog" aria-modal="true" aria-label="TikTok Shop"><div class="shop-panel-head"><h3>🛍️ TikTok Shop</h3><button class="close-shop" type="button" aria-label="Fechar">×</button></div><div class="shop-body"></div></div>';
+  document.body.appendChild(overlay);
+  const body=overlay.querySelector(".shop-body");
+  function openProduct(id){
+    const p=product(id); if(!p)return;
+    body.innerHTML=`<div class="shop-detail">${pic(p)}<div><h3>${p.name}</h3><p>${p.desc}</p><b>${money(p.price)}</b></div></div>
+      <div class="shop-actions"><button class="add-cart" type="button" data-add="${p.id}">Adicionar ao carrinho</button><button class="buy-now" type="button" data-buy="${p.id}">Comprar agora</button></div>`;
+    overlay.classList.add("open");
+  }
+  function openCart(){
+    if(!cart.length){ body.innerHTML='<div class="empty-cart">🛒<br><br>Seu carrinho está vazio.</div>'; }
+    else {
+      const rows=cart.map(item=>{const p=product(item.id);return `<div class="cart-item">${pic(p)}<div><strong>${p.name}</strong><div class="qty"><button type="button" data-minus="${p.id}">−</button><span>${item.qty}</span><button type="button" data-plus="${p.id}">+</button></div></div><b>${money(p.price*item.qty)}</b></div>`}).join("");
+      const T=totals();
+      body.innerHTML=rows+`<div class="cp-row"><input id="cup" placeholder="Cupom (TIKTOK10)"><button type="button" data-coupon>Aplicar</button></div><div class="cart-line"><span>Subtotal</span><span>${money(T.s)}</span></div><div class="cart-line"><span>Desconto</span><span>−${money(T.d)}</span></div><div class="cart-line"><span>Frete</span><span>${T.f?money(T.f):"Grátis"}</span></div><div class="cart-total"><span>Total</span><span>${money(T.t)}</span></div><button class="checkout" type="button" data-checkout>Finalizar compra simulada</button>`;
+    }
+    overlay.classList.add("open");
+  }
+  document.addEventListener("click",e=>{
+    const prod=e.target.closest("[data-product]"); if(prod) openProduct(+prod.dataset.product);
+    if(e.target.closest("[data-open-cart]")) openCart();
+    const addBtn=e.target.closest("[data-add]"); if(addBtn){add(+addBtn.dataset.add);overlay.classList.remove("open");}
+    const buy=e.target.closest("[data-buy]"); if(buy){add(+buy.dataset.buy);openCart();}
+    const plus=e.target.closest("[data-plus]"); if(plus){const i=cart.find(x=>x.id===+plus.dataset.plus);if(i)i.qty++;saveCart();openCart();}
+    const minus=e.target.closest("[data-minus]"); if(minus){const i=cart.findIndex(x=>x.id===+minus.dataset.minus);if(i>-1){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);}saveCart();openCart();}
+    if(e.target.closest(".close-shop") || e.target===overlay) overlay.classList.remove("open");
+  });
+  renderGrids();saveCart();
+  function checkout(){const T=totals();body.innerHTML=`<h3>Finalizar pedido</h3><p class="shop-note">Demonstração: nenhum dado é enviado.</p><div class="cp-row"><input id="cep" inputmode="numeric" maxlength="9" placeholder="CEP (ex.: 01001-000)"></div><div class="pay"><label><input type="radio" name="pg" value="Pix" checked> Pix</label><label><input type="radio" name="pg" value="Cartão"> Cartão de crédito</label><label><input type="radio" name="pg" value="Boleto"> Boleto</label></div><div class="cart-total"><span>Total</span><span>${money(T.t)}</span></div><button class="checkout" type="button" data-confirm>Confirmar pedido simulado</button>`}
+  function confirmOrder(){
+    if(document.getElementById("cep").value.replace(/\D/g,"").length!==8){toastShop("Digite um CEP com 8 números");return}
+    const pg=document.querySelector("input[name=pg]:checked").value,t=money(totals().t),n=Math.floor(100000+Math.random()*899999);
+    cart=[];coupon=0;saveCart();
+    body.innerHTML=`<div class="empty-cart">✅<br><br><b>Pedido #${n} confirmado!</b><br><small>${pg} · ${t} · simulado, sem cobrança real</small></div><ul class="track"><li style="--k:0">Pedido confirmado</li><li style="--k:1">Em separação</li><li style="--k:2">Enviado</li><li style="--k:3">Entregue</li></ul>`;toastShop("Pedido simulado concluído")}
+  const svw=document.getElementById("shopview");
+  function mode(m){svw.hidden=m!=="shop";chatv.hidden=m!=="chat";document.body.classList.toggle("shop-mode",m!=="feed");document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===m));if(m==="shop")svw.scrollTop=0;if(m==="chat")list()}
+  const chatv=document.getElementById("chatview"),ch=chatv.querySelector(".ch-body"),CR=window.CR;let hist={},at=-1;
+  try{hist=JSON.parse(DB.g("demoChat")||"{}")}catch(e){}
+  const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const av=c=>`<span class="cav"><b>${c.n[0]}</b><img src="${AVT(c.img)}" alt="" onerror="this.remove()"></span>`;
+  const keep=()=>DB.s("demoChat",JSON.stringify(hist));
+  function list(){at=-1;ch.innerHTML='<h3>💬 Amigos</h3><p class="shop-note">Conversa de demonstração: as respostas são geradas por regras locais, sem internet, e ficam só neste navegador.</p><div class="ch-list">'+CR.map((c,i)=>{const h=hist[i]||[],l=h[h.length-1];return `<button class="frow" type="button" data-chat="${i}">${av(c)}<span><b>${c.n}</b><small>@${c.u}</small><em>${l?esc(l.t):"Toque para conversar"}</em></span></button>`}).join("")+'</div>'}
+  function paint(typ){const b=document.getElementById("msgs");b.innerHTML=hist[at].map(m=>`<div class="m${m.me?" me":""}">${esc(m.t)}</div>`).join("")+(typ?'<div class="m typ">digitando…</div>':"");b.scrollTop=b.scrollHeight}
+  const GR=["Oi! Viu o último vídeo? 😄","E aí! Já abriu o TikTok hoje?","Oi! Bora trocar ideia sobre vídeos?"],TP=["dancinhas e trends","vlogs do dia a dia","dicas rápidas","edição de vídeo","tecnologia e gadgets","jogos","achadinhos do Shop","treino e saúde"];let me="";
+  function smart(c,raw){
+    const tp=TP[CR.indexOf(c)],s=raw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""),pick=a=>a[Math.floor(Math.random()*a.length)],has=r=>r.test(s),nome=me?", "+me:"";
+    const nm=(s.match(/(?:meu nome e|me chamo|sou o|sou a)\s+([a-z]+)/)||[])[1];
+    if(nm){me=nm[0].toUpperCase()+nm.slice(1);return `Prazer, ${me}! Eu sou ${c.n} e curto ${tp}. E você, curte o quê?`}
+    if(has(/^(oi|ola|e ai|eai|opa|salve|bom dia|boa tarde|boa noite)\b/))return pick([`Oi${nome}! Tudo certo por aí? Eu estava vendo uns vídeos de ${tp}.`,`E aí${nome}! Que bom te ver. Sobre o que vamos falar hoje?`]);
+    if(has(/tudo bem|como vai|como voce esta|td bem|tudo certo/))return pick([`Tudo ótimo! Passei a tarde vendo ${tp}. E você, como está?`,`Tudo bem sim! Só um pouco viciado(a) em ${tp} 😅 E você?`]);
+    if(has(/shop|compra|produto|cupom|oferta|carrinho/))return `No TikTok Shop o produto aparece no vídeo ou na LIVE e você compra sem sair do app. Na aba Shop daqui dá para testar o carrinho e o cupom TIKTOK10. Já experimentou?`;
+    if(has(/viral|viraliz|algoritmo|fyp|para voce|alcance/))return `O feed olha sinais como tempo assistido, curtidas, comentários e compartilhamentos. Por isso um bom gancho nos primeiros segundos ajuda bastante. Quer que eu pense em ideias de gancho?`;
+    if(has(/dinheiro|renda|afiliad|comissao|monetiz/))return `Não existe um valor fixo por visualização. A renda pode vir de parcerias, publicidade e vendas como afiliado no Shop. Você está pensando em criar conteúdo ou em vender algo?`;
+    if(has(/video|gravar|editar|postar|criar|edicao/))return pick([`Para um vídeo curto, eu começaria com um gancho forte, cortes rápidos e legenda. Qual tema você quer gravar?`,`Gravar é o primeiro passo: depois vem cortar, escolher um som e publicar. Já tem uma ideia de tema?`]);
+    if(has(/musica|som|danca|trend|desafio|tendencia/))return `Tendências funcionam assim: uma pessoa cria e muita gente recria. Eu gosto de adaptar a ideia ao meu estilo em vez de copiar igual. Qual trend você viu por último?`;
+    if(has(/jogo|jogar|game|gamer/))return `Jogos rendem vídeos ótimos, principalmente jogadas rápidas e reações. Qual jogo você mais curte?`;
+    if(has(/obrigad|valeu|vlw|thanks/))return pick(["Imagina! 😄","Tmj! Qualquer coisa é só chamar.","De nada, foi um prazer ajudar!"]);
+    if(has(/tchau|ate mais|flw|falou|fui/))return pick([`Até mais${nome}! Me chama quando quiser. 👋`,"Falou! Bons vídeos pra você 😄"]);
+    const kw=(s.match(/[a-z]{5,}/g)||[]).sort((a,b)=>b.length-a.length)[0];
+    if(/\?\s*$/.test(raw)||has(/^(como|por que|porque|o que|qual|quando|onde|quem|quanto)\b/))return kw?`Boa pergunta! Sobre "${kw}" eu não tenho certeza, mas acho que vale pesquisar nas fontes oficiais. O que você já descobriu?`:`Boa pergunta! Pode explicar um pouco mais?`;
+    return kw?pick([`Interessante isso de "${kw}"! Conta mais: como isso se liga ao que você curte no TikTok?`,`Entendi, você falou de "${kw}". Eu sou mais de ${tp}, mas quero saber a sua visão.`]):pick(["Hmm, entendi! Me conta mais? 👀","Haha, boa! E aí, o que mais você tem visto por aqui?"]);
+  }
+  function openChat(i){at=i;const c=CR[i];if(!hist[i]){hist[i]=[{t:GR[i%3]}];keep()}
+    ch.innerHTML=`<div class="chh"><button type="button" data-back aria-label="Voltar">←</button>${av(c)}<b>${c.n}</b></div><div class="msgs" id="msgs"></div><div class="chin" id="chf"><input id="chi" placeholder="Mensagem..." autocomplete="off" aria-label="Mensagem"><button type="button" data-send>Enviar</button></div>`;paint()}
+  
+  
+  const cmt=document.createElement("div");cmt.className="cmt";cmt.innerHTML='<div class="cmt-h"><b id="cmn"></b><button type="button" data-cmx aria-label="Fechar">×</button></div><div class="cmt-l" id="cml"></div><div class="chin"><input id="cmi" placeholder="Adicione um comentário..." autocomplete="off" aria-label="Comentário"><button type="button" data-cms>Enviar</button></div>';
+  document.getElementById("stage").appendChild(cmt);
+  const SL=[...document.querySelectorAll(".slide")],POOL=["Adorei esse vídeo sobre {t}! 🔥","Muito bem explicado, valeu!","Não sabia disso, aprendi muito 😮","Salvei pra rever depois","Quem mais veio pelo #tiktok? 🙋","Faz uma parte 2, por favor!","Isso ajuda demais quem está começando","Mandei pro meu amigo agora kkk","Conteúdo nota 10 👏","Esse tema merece mais vídeos"],liked=new Set();
+  let cs=-1,mine={};try{mine=JSON.parse(DB.g("demoComments")||"{}")}catch(e){}
+  const all=i=>{const t=SL[i].dataset.title;return (mine[i]||[]).slice().reverse().concat([0,1,2,3,4,5].map(k=>({id:"s"+i+"-"+k,c:(i+k*3)%8,t:POOL[(i*3+k*2)%POOL.length].replace("{t}",t),l:((i+1)*(k+3)*7)%240+3})))};
+  const cnt=i=>{SL[i].querySelector(".cm span").textContent=all(i).length},saveCm=()=>DB.s("demoComments",JSON.stringify(mine));
+  function renderCm(){const a=all(cs);document.getElementById("cmn").textContent=a.length+" comentários";document.getElementById("cml").innerHTML=a.map(m=>{const c=CR[m.c],on=liked.has(m.id);return `<div class="cm-i">${m.me?'<span class="cav"><b>V</b></span>':av(c)}<div><b>${m.me?"Você":"@"+c.u}</b><p>${esc(m.t)}</p></div><button type="button" class="cm-l${on?" on":""}" data-cl="${m.id}">${on?"♥":"♡"} ${m.l+(on?1:0)}</button></div>`}).join("")}
+  function sendCm(){const inp=document.getElementById("cmi"),t=inp.value.trim(),i=cs;if(!t||i<0)return;inp.value="";(mine[i]=mine[i]||[]).push({id:"u"+Date.now(),me:1,t,l:0});saveCm();renderCm();cnt(i);document.getElementById("cml").scrollTop=0;
+    setTimeout(()=>{const ci=Math.floor(Math.random()*8);mine[i].push({id:"r"+Date.now(),c:ci,t:"@Você "+(/\?/.test(t)?smart(CR[ci],t):["Valeu pelo comentário! 😄","Também achei muito bom!","Concordo totalmente 👏","Haha, verdade! Bora compartilhar?"][Math.floor(Math.random()*4)]),l:0});saveCm();cnt(i);if(cs===i&&cmt.classList.contains("open"))renderCm()},1800)}
+  SL.forEach((s,i)=>cnt(i));
+  document.addEventListener("click",e=>{const b=e.target.closest(".cm");if(b){cs=SL.indexOf(b.closest(".slide"));cmt.classList.add("open");renderCm()}
+    if(e.target.closest("[data-cmx]"))cmt.classList.remove("open");if(e.target.closest("[data-cms]"))sendCm();
+    const l=e.target.closest("[data-cl]");if(l){const id=l.dataset.cl;liked.has(id)?liked.delete(id):liked.add(id);renderCm()}});
+  document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="cmi"&&!e.isComposing){e.preventDefault();sendCm()}});
+  let shareT="";
+  function openShare(s){shareT=s.dataset.title;body.innerHTML=`<h3>Enviar vídeo</h3><p class="shop-note">“${esc(shareT)}”</p><div class="ch-list" style="max-height:42vh">`+CR.map((c,i)=>`<button class="frow" type="button" data-share="${i}">${av(c)}<span><b>${c.n}</b><small>@${c.u}</small></span></button>`).join("")+`</div><button class="checkout" type="button" data-copy>Copiar link</button>`;overlay.classList.add("open")}
+  document.addEventListener("click",e=>{const b=e.target.closest(".sh");if(b){e.stopImmediatePropagation();openShare(b.closest(".slide"))}},true);
+  document.addEventListener("click",e=>{
+    const r=e.target.closest("[data-share]");
+    if(r){const i=+r.dataset.share,t=shareT;hist[i]=hist[i]||[{t:GR[i%3]}];hist[i].push({me:1,t:"📹 "+t});keep();overlay.classList.remove("open");toastShop("Vídeo enviado para "+CR[i].n);
+      setTimeout(()=>{hist[i].push({t:`Vi o "${t}"! Bem legal 😄 Depois me conta o que você achou.`});keep();if(at===i&&document.getElementById("msgs"))paint()},1500)}
+    if(e.target.closest("[data-copy]")){const u=location.href;let ok=false;try{const a=document.createElement("textarea");a.value=u;document.body.appendChild(a);a.select();ok=document.execCommand("copy");a.remove()}catch(x){}
+      if(!ok&&navigator.clipboard)navigator.clipboard.writeText(u).then(()=>toastShop("Link copiado"),()=>{});toastShop(ok?"Link copiado":"Copie o link na barra do navegador");overlay.classList.remove("open")}
+  });
+  function send(){const i=at,inp=document.getElementById("chi");if(i<0||!inp)return;const t=inp.value.trim();if(!t)return;inp.value="";hist[i].push({me:1,t});keep();paint(1);const r=smart(CR[i],t);setTimeout(()=>{hist[i].push({t:r});keep();if(at===i)paint()},700+Math.min(r.length*22,1800))}
+  document.addEventListener("click",e=>{if(e.target.closest("[data-send]"))send()});
+  document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="chi"&&!e.isComposing){e.preventDefault();send()}});
+  document.addEventListener("click",e=>{const r=e.target.closest("[data-chat]");if(r)openChat(+r.dataset.chat);if(e.target.closest("[data-back]"))list()});
+  function sim(){const g=id=>+document.getElementById(id).value||0,p=g("sp"),fee=p*g("st")/100+g("sf"),af=p*g("sa")/100,l=p-g("sc")-fee-af-g("ss");
+    document.getElementById("sout").innerHTML=`<div><span>Taxa da plataforma</span><b>${money(fee)}</b></div><div><span>Comissão do afiliado</span><b>${money(af)}</b></div><div class="${l<0?"neg":"pos"}"><span>Lucro por venda</span><b>${money(l)}</b></div><div><span>Margem</span><b>${p?(l/p*100).toFixed(1).replace(".",","):"0"}%</b></div>`}
+  document.addEventListener("click",e=>{
+    const t=e.target,c=s=>t.closest(s);
+    if(c("[data-tab]"))mode(c("[data-tab]").dataset.tab);
+    if(c("[data-go-shop]"))mode("shop");
+    if(c("[data-sv]")){const k=c("[data-sv]").dataset.sv;svw.querySelectorAll("[data-sv]").forEach(b=>b.classList.toggle("on",b.dataset.sv===k));svw.querySelectorAll("[data-pane]").forEach(p=>p.classList.toggle("on",p.dataset.pane===k));if(k==="sell")sim()}
+    if(c("[data-cat]")){cat=c("[data-cat]").dataset.cat;document.querySelectorAll("[data-cat]").forEach(b=>b.classList.toggle("on",b.dataset.cat===cat));renderGrids()}
+    if(c("[data-checkout]"))checkout();
+    if(c("[data-confirm]"))confirmOrder();
+    if(c("[data-coupon]")){const v=document.getElementById("cup").value.trim().toUpperCase();coupon=v==="TIKTOK10"?.1:0;toastShop(coupon?"Cupom de 10% aplicado":"Cupom inválido");openCart()}
+  });
+  document.getElementById("q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();renderGrids()});
+  svw.addEventListener("input",e=>{if(e.target.closest(".sim"))sim()});
+  sim();
+
+
+  
+  // Salvamento robusto: persiste por slide e nunca depende de API externa.
+  document.querySelectorAll(".slide").forEach((s,i)=>{
+    const btn=s.querySelector(".sv"); if(!btn)return;
+    const key="tiktok_demo_saved_"+i;
+    let saved=false;
+    try{saved=localStorage.getItem(key)==="1";}catch(e){}
+    const paint=()=>{
+      btn.classList.toggle("is",saved);
+      btn.setAttribute("aria-pressed",String(saved));
+      const label=btn.querySelector("span"); if(label)label.textContent=saved?"Salvo":"Salvar";
+    };
+    paint();
+    btn.addEventListener("click",e=>{
+      e.preventDefault();e.stopPropagation();
+      saved=!saved;
+      try{localStorage.setItem(key,saved?"1":"0");}catch(e){}
+      paint();
+      toastShop(saved?"Salvo nos favoritos":"Removido dos favoritos");
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
